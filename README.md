@@ -57,5 +57,5 @@
 
 ### 1. Repository Clone
 ```bash
-git clone [https://github.com/yourusername/social-pulse.git](https://github.com/yourusername/social-pulse.git)
-cd social-pulse
+[git clone [https://github.com/yourusername/social-pulse.git](https://github.com/yourusername/social-pulse.git)
+cd social-pulse](https://github.com/Fanuel-Dev/social-media-dashboard.git)
