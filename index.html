@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse — Social Media Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="greeting">Good <span id="timeOfDay">day</span> — here's your pulse</div>
+      <div class="sub">Across all your connected platforms</div>
+    </div>
+    <div class="avatars-row" id="avatarsRow"></div>
+  </header>
+
+  <div class="tabs" id="tabs">
+    <button class="active" data-page="overview">Overview</button>
+    <button data-page="compose">Compose</button>
+    <button data-page="schedule">Schedule</button>
+  </div>
+
+  <section class="page active" id="page-overview">
+    <div class="platform-grid" id="platformGrid"></div>
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Engagement over the last 14 days</div>
+        <div class="legend-toggles" id="legendToggles"></div>
+      </div>
+      <svg class="chart" id="engagementChart" viewBox="0 0 640 200" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><div class="panel-title">Top performing posts</div></div>
+      <div class="top-posts" id="topPosts"></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-compose">
+    <div class="compose-grid">
+      <div class="panel">
+        <div class="panel-title" style="margin-bottom:12px;">New post</div>
+        <div class="platform-select" id="platformSelect"></div>
+        <textarea id="composeText" placeholder="What do you want to share?"></textarea>
+        <div class="char-row" id="charRow">0 / 280</div>
+        <div class="schedule-row">
+          <div class="post-mode" id="postMode">
+            <button data-mode="now" class="active">Post now</button>
+            <button data-mode="later">Schedule</button>
+          </div>
+          <input type="date" id="schedDate" style="display:none;">
+          <input type="time" id="schedTime" style="display:none;">
+        </div>
+        <button class="submit-btn" id="submitPost">Post now</button>
+      </div>
+      <div class="panel">
+        <div class="panel-title" style="margin-bottom:12px;">Preview</div>
+        <div class="preview-stack" id="previewStack"><div class="preview-empty">Select a platform and start typing to preview your post.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-schedule">
+    <div class="panel">
+      <div class="panel-title" style="margin-bottom:12px;">Scheduled & recent posts</div>
+      <div class="sched-list" id="schedList"></div>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

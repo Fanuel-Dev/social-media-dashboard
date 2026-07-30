@@ -1,0 +1,107 @@
+ :root{
+    --bg:#1b1620; --panel:#241d2b; --panel-2:#2c2333; --text:#f2ecf5; --muted:#9a8fa8;
+    --line:rgba(242,236,245,0.09); --accent:#d6487a; --accent-bright:#e8639a;
+    --good:#4fd1a0; --bad:#f0665f;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:'Inter', sans-serif; color:var(--text); min-height:100vh;
+    background: radial-gradient(ellipse 900px 450px at 20% -10%, rgba(214,72,122,0.12), transparent 60%),
+                radial-gradient(ellipse 700px 400px at 90% 10%, rgba(46,196,196,0.08), transparent 60%),
+                var(--bg);
+  }
+  .wrap{ max-width:1080px; margin:0 auto; padding:28px 22px 70px; }
+
+  header{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:18px; }
+  .greeting{ font-family:'Manrope'; font-weight:800; font-size:24px; }
+  .greeting span{ color:var(--accent-bright); }
+  .sub{ font-family:'Inter'; font-size:13px; color:var(--muted); margin-top:4px; }
+  .avatars-row{ display:flex; gap:-6px; }
+  .platform-avatar{ width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:11px; color:#fff; border:2px solid var(--bg); margin-left:-8px; }
+  .platform-avatar:first-child{ margin-left:0; }
+
+  .tabs{ display:flex; gap:6px; background:var(--panel); border-radius:12px; padding:5px; margin-bottom:22px; width:fit-content; }
+  .tabs button{ background:none; border:none; padding:9px 18px; border-radius:9px; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--muted); cursor:pointer; }
+  .tabs button.active{ background:var(--accent); color:#fff; }
+
+  .page{ display:none; }
+  .page.active{ display:block; }
+
+  /* --- Platform cards --- */
+  .platform-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:14px; margin-bottom:22px; }
+  .platform-card{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px; position:relative; overflow:hidden; }
+  .platform-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--pcolor); }
+  .platform-head{ display:flex; align-items:center; gap:9px; margin-bottom:12px; }
+  .platform-badge{ width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:11px; color:#fff; background:var(--pcolor); flex:none; }
+  .platform-name{ font-family:'Manrope'; font-weight:700; font-size:13px; }
+  .platform-followers{ font-family:'JetBrains Mono'; font-weight:700; font-size:23px; }
+  .platform-growth{ font-family:'JetBrains Mono'; font-size:11px; margin-top:3px; display:inline-block; padding:2px 7px; border-radius:6px; }
+  .platform-growth.up{ background:rgba(79,209,160,0.15); color:var(--good); }
+  .platform-growth.down{ background:rgba(240,102,95,0.15); color:var(--bad); }
+  .platform-spark{ width:100%; height:26px; margin-top:10px; }
+  .platform-eng{ font-family:'Inter'; font-size:11px; color:var(--muted); margin-top:8px; }
+
+  /* --- Chart panel --- */
+  .panel{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; margin-bottom:20px; }
+  .panel-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px; }
+  .panel-title{ font-family:'Manrope'; font-weight:700; font-size:14px; }
+  .legend-toggles{ display:flex; gap:6px; flex-wrap:wrap; }
+  .legend-chip{ display:flex; align-items:center; gap:5px; font-family:'Inter'; font-size:11px; padding:5px 10px; border-radius:999px; background:var(--panel-2); cursor:pointer; opacity:0.4; transition: opacity .15s ease; }
+  .legend-chip.active{ opacity:1; }
+  .legend-chip .sw{ width:8px; height:8px; border-radius:50%; }
+  svg.chart{ width:100%; height:200px; display:block; overflow:visible; }
+
+  /* --- Top posts --- */
+  .top-posts{ display:flex; flex-direction:column; gap:8px; }
+  .post-row{ display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; padding:11px 13px; border-radius:11px; background:var(--panel-2); }
+  .post-row .pbadge{ width:26px; height:26px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:10px; color:#fff; flex:none; }
+  .post-row .ptext{ font-family:'Inter'; font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .post-row .pstats{ font-family:'JetBrains Mono'; font-size:11px; color:var(--muted); text-align:right; white-space:nowrap; }
+
+  /* --- Compose --- */
+  .compose-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+  .platform-select{ display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
+  .platform-chip{ display:flex; align-items:center; gap:6px; padding:8px 13px; border-radius:999px; border:1px solid var(--line); background:var(--panel-2); cursor:pointer; font-family:'Inter'; font-size:12px; color:var(--muted); }
+  .platform-chip.selected{ border-color:var(--pcolor); color:#fff; background:var(--pcolor); }
+  textarea#composeText{
+    width:100%; min-height:130px; background:var(--panel-2); border:1px solid var(--line); border-radius:12px;
+    padding:14px; font-family:'Inter'; font-size:14px; color:var(--text); outline:none; resize:vertical;
+  }
+  .char-row{ display:flex; justify-content:space-between; align-items:center; margin-top:8px; font-family:'JetBrains Mono'; font-size:11px; color:var(--muted); }
+  .char-row.warn{ color:var(--bad); }
+  .schedule-row{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+  .schedule-row input{ background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:9px 11px; color:var(--text); font-family:'Inter'; font-size:12.5px; outline:none; }
+  .post-mode{ display:flex; background:var(--panel-2); border-radius:8px; padding:2px; gap:2px; }
+  .post-mode button{ background:none; border:none; padding:8px 14px; border-radius:6px; font-family:'Inter'; font-size:12px; color:var(--muted); cursor:pointer; }
+  .post-mode button.active{ background:var(--accent); color:#fff; font-weight:600; }
+  .submit-btn{ margin-top:14px; width:100%; background:var(--accent); border:none; color:#fff; font-family:'Manrope'; font-weight:700; font-size:14px; padding:13px; border-radius:10px; cursor:pointer; }
+  .submit-btn:hover{ background:var(--accent-bright); }
+  .submit-btn:disabled{ background:var(--panel-2); color:var(--muted); cursor:not-allowed; }
+
+  .preview-stack{ display:flex; flex-direction:column; gap:10px; }
+  .preview-card{ background:var(--panel-2); border:1px solid var(--line); border-radius:14px; padding:14px; }
+  .preview-top{ display:flex; align-items:center; gap:9px; margin-bottom:9px; }
+  .preview-avatar{ width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:11px; color:#fff; }
+  .preview-name{ font-family:'Manrope'; font-weight:700; font-size:12.5px; }
+  .preview-meta{ font-family:'Inter'; font-size:10.5px; color:var(--muted); }
+  .preview-text{ font-family:'Inter'; font-size:13px; line-height:1.5; white-space:pre-wrap; word-break:break-word; }
+  .preview-empty{ text-align:center; color:var(--muted); font-family:'Inter'; font-size:12.5px; padding:30px 10px; }
+
+  /* --- Schedule list --- */
+  .sched-list{ display:flex; flex-direction:column; gap:8px; }
+  .sched-row{ display:grid; grid-template-columns:auto 1fr auto auto; gap:12px; align-items:center; padding:12px 14px; border-radius:12px; background:var(--panel-2); }
+  .sched-row.overdue{ box-shadow:inset 0 0 0 1px rgba(240,102,95,0.4); }
+  .sched-platforms{ display:flex; gap:4px; flex:none; }
+  .sched-platforms span{ width:20px; height:20px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-size:8.5px; font-weight:700; color:#fff; }
+  .sched-text{ font-family:'Inter'; font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .sched-time{ font-family:'JetBrains Mono'; font-size:11px; color:var(--muted); white-space:nowrap; }
+  .sched-actions button{ background:none; border:none; color:var(--muted); cursor:pointer; font-size:12px; margin-left:6px; }
+  .sched-actions button:hover{ color:var(--accent-bright); }
+  .empty-note{ text-align:center; color:var(--muted); font-family:'Inter'; font-size:13px; padding:26px; }
+
+  .toast{ position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); opacity:0; background:var(--accent); color:#fff; font-family:'Manrope'; font-weight:600; font-size:13px; padding:11px 22px; border-radius:999px; transition:all .3s ease; z-index:80; }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media (max-width:720px){ .compose-grid{ grid-template-columns:1fr; } }
+ 
